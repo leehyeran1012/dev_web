@@ -454,3 +454,10 @@ box-sizing:content-box;
 /* Mobile화면으로 */
 #device_change {display:block;margin:0.3em;padding:0.5em 0;border:1px solid #eee;border-radius:2em;background:#fff;color:#000;font-size:2em;text-decoration:none;text-align:center}
 
+/* 최대 너비 : 1280px */
+@media screen and (max-width: 1200px) {
+	#hd, #wrapper, #ft {min-width:100%}
+	#hd_pop, #hd_wrapper, #tnb .inner, #gnb .gnb_wrap, #container_wr, #ft_wr, #ft_copy, #container {width:100%}
+}
+
+

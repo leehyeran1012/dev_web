@@ -19,10 +19,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	<input type="hidden" name="cert_type" value="<?php echo $member['mb_certify']; ?>">
 	<input type="hidden" name="cert_no" value="">
 	<?php if (isset($member['mb_sex'])) {  ?><input type="hidden" name="mb_sex" value="<?php echo $member['mb_sex'] ?>"><?php }  ?>
-	<?php if (isset($member['mb_nick_date']) && $member['mb_nick_date'] > date("Y-m-d", G5_SERVER_TIME - ($config['cf_nick_modify'] * 86400))) { // 닉네임수정일이 지나지 않았다면  ?>
-	<input type="hidden" name="mb_nick_default" value="<?php echo get_text($member['mb_nick']) ?>">
-	<input type="hidden" name="mb_nick" value="<?php echo get_text($member['mb_nick']) ?>">
-	<?php }  ?>
+	
 	
 	<div id="register_form" class="form_01">   
 	    <div class="register_form_inner">
@@ -32,17 +29,24 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	                <label for="reg_mb_id">
 	                    아이디 (필수)
 	                    <button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sound_only">설명보기</span></button>
-	                    <span class="tooltip">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.</span>
+	                    <span id="tooltip_id" class="tooltip">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.</span>
+						<span id="id_chk_msg" class="check_msg"></span>
 	                </label>
 	                <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" <?php echo $required ?> <?php echo $readonly ?> class="frm_input full_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" placeholder="아이디">
-	                <span id="msg_mb_id"></span>
+	                <span id="msg_mb_id"></span>									
 	            </li>
 	            <li class="half_input left_input margin_input">
-	                <label for="reg_mb_password">비밀번호 (필수)</label>
+	                <label for="reg_mb_password">
+						비밀번호 (필수)
+						<span id="pw_chk_msg1" class="check_msg"></span>
+					</label>
 	                <input type="password" name="mb_password" id="reg_mb_password" <?php echo $required ?> class="frm_input full_input <?php echo $required ?>" minlength="3" maxlength="20" placeholder="비밀번호">
 	            </li>
 	            <li class="half_input left_input">
-	                <label for="reg_mb_password_re">비밀번호 확인 (필수)</label>
+	                <label for="reg_mb_password_re">
+						비밀번호 확인 (필수)
+						<span id="pw_chk_msg2" class="check_msg"></span>
+					</label>
 	                <input type="password" name="mb_password_re" id="reg_mb_password_re" <?php echo $required ?> class="frm_input full_input <?php echo $required ?>" minlength="3" maxlength="20" placeholder="비밀번호 확인">
 	            </li>
 	        </ul>
@@ -98,20 +102,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	                <label for="reg_mb_name">이름 (필수)<?php echo $desc_name ?></label>
 	                <input type="text" id="reg_mb_name" name="mb_name" value="<?php echo get_text($member['mb_name']) ?>" <?php echo $required ?> <?php echo $name_readonly; ?> class="frm_input full_input <?php echo $required ?> <?php echo $name_readonly ?>" size="10" placeholder="이름">
 	            </li>
-	            <?php if ($req_nick) {  ?>
-	            <li>
-	                <label for="reg_mb_nick">
-	                	닉네임 (필수)
-	                	<button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sound_only">설명보기</span></button>
-						<span class="tooltip">공백없이 한글,영문,숫자만 입력 가능 (한글2자, 영문4자 이상)<br> 닉네임을 바꾸시면 앞으로 <?php echo (int)$config['cf_nick_modify'] ?>일 이내에는 변경 할 수 없습니다.</span>
-	                </label>
-	                
-                    <input type="hidden" name="mb_nick_default" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>">
-                    <input type="text" name="mb_nick" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>" id="reg_mb_nick" required class="frm_input required nospace full_input" size="10" maxlength="20" placeholder="닉네임">
-                    <span id="msg_mb_nick"></span>	                
-	            </li>
-	            <?php }  ?>
-	
+	           	
 	            <li>
 	                <label for="reg_mb_email">E-mail (필수)
 	                
@@ -303,6 +294,64 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	</form>
 </div>
 <script>
+$("#reg_mb_id").on({
+	keyup: function(e){				
+		$("#id_chk_msg").hide();
+		if(!$(e.target).val()){
+		}else if($(e.target).val().replace(/[a-z0-9_]/g,'')){
+			var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-+┼<>@\#$%&\'\"\\\(\=ㄱ-ㅎ가-힣]/gi;
+			if(regExp.test($(e.target).val())){
+				//alert("특수문자는 입력하실수 없습니다.");
+				$(e.target).val($(e.target).val().substring(0, $(e.target).val().length - 1 )); // 입력한 특수문자 한자리 지움
+			}else{
+				$("#id_chk_msg").text($("#tooltip_id").text());
+				$("#id_chk_msg").show();
+			}
+		}else if($(e.target).val().length < 4){
+			$("#id_chk_msg").text($("#tooltip_id").text());
+			$("#id_chk_msg").show();
+		}else{
+			$.ajax({
+				type:'post',
+				dataType:'text',
+				data:{mode:'select', reg_mb_id: $(e.target).val()},
+				url:'/bbs/ajax.mb_id.php',
+				success: function(data){					
+					if(data){
+						$("#id_chk_msg").text(data);
+						$("#id_chk_msg").show();
+					}						
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					console.log("ID중복검사 ajax 오류!");
+				}
+			});
+		}		
+	}
+});
+$("#reg_mb_password").on({
+	keyup: function(e){	
+		$(e.target).siblings("label").children("#pw_chk_msg1").hide();
+		if($(e.target).val()){
+			if ($(e.target).val().length < 4) {
+				$(e.target).siblings("label").children("#pw_chk_msg1").text("비밀번호를 3글자 이상 입력하십시오.");
+				$(e.target).siblings("label").children("#pw_chk_msg1").show();				
+			}
+		}
+	}
+});
+$("#reg_mb_password_re").on({
+	keyup: function(e){	
+		$(e.target).siblings("label").children("#pw_chk_msg2").hide();
+		if($(e.target).val()){
+			if ($("#reg_mb_password").val() != $(e.target).val()) {
+				$(e.target).siblings("label").children("#pw_chk_msg2").text("비밀번호가 일치하지 않습니다.");
+				$(e.target).siblings("label").children("#pw_chk_msg2").show();				
+			}
+		}
+	}
+});
+
 $(function() {
     $("#reg_zip_find").css("display", "inline-block");
     var pageTypeParam = "pageType=register";
@@ -428,16 +477,7 @@ function fregisterform_submit(f)
     }
     <?php } ?>
 
-    // 닉네임 검사
-    if ((f.w.value == "") || (f.w.value == "u" && f.mb_nick.defaultValue != f.mb_nick.value)) {
-        var msg = reg_mb_nick_check();
-        if (msg) {
-            alert(msg);
-            f.reg_mb_nick.select();
-            return false;
-        }
-    }
-
+    
     // E-mail 검사
     if ((f.w.value == "") || (f.w.value == "u" && f.mb_email.defaultValue != f.mb_email.value)) {
         var msg = reg_mb_email_check();
