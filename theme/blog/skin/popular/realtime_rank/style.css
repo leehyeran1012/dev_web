@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+/* 인기검색어 */
+.mw-popular { border:1px solid #e1e1e1; text-align:center; }
+.mw-popular td { font-size:12px; line-height:16px; }
+.mw-popular a:link { color:#444; text-decoration:none; }
+.mw-popular a:active { color:#444; text-decoration:none;  }
+.mw-popular a:visited { color:#444; text-decoration:none;  }
+.mw-popular a:hover { color:#444; text-decoration:underline; }
+.mw-popular .subject { background:url(./img/box-bg.gif); height:24px; margin:0 0 7px 0; }
+.mw-popular .subject { font-size:12px; color:#555; font-weight:bold; letter-spacing:-1px; text-decoration:none; text-align:left; }
+.mw-popular .subject div { margin:5px 0 0 10px;}
+.mw-popular table { padding: 0 5px 5px 5px;width: 100%; }
+.mw-popular .word { text-align: left;height:16px; overflow:hidden; margin:2px 0 0 5px; }
+.mw-popular .gap { letter-spacing:-1px; font-size:11px; }
+
+/*공통*/
+.sp_img{background-image:url(./img/sp_img2.png);background-repeat:no-repeat}/*업로드전 경로 변경 churl*/
+
+/*오른쪽 영역*/
+.content_box{position:relative;margin-top:10px;border:1px solid #e1e1e1;color:#333}/*201214 추가*/
+.box_tit{position:relative;padding:13px 0 10px;margin:0 13px ;border-bottom:1px dashed #e1e1e1}
+.box_tit .tit{font-size:14px}
+
+.box_menu{position:absolute;top:10px;right:0}
+.box_menu > a{font-size:11px;letter-spacing:-1px}
+.box_menu > a:before{content:"";display:inline-block;width:1px;height:10px;margin:0 8px 0 3px;vertical-align:-1px;background:#d7d7d7}
+.box_menu > a:first-child:before{display:none}
+.popular_rank1{color:#29367c}
+.popular_rank1:hover{text-decoration:underline}
+.popular_rank2{color:#ff6600}
+.popular_rank2:hover{text-decoration:underline}
+.popular_rank3{color:#6f6dd9}
+.popular_rank3:hover{text-decoration:underline}
+.popular_rank1.on,.popular_rank2.on,.popular_rank3.on{text-decoration:underline}
+.rank_list{padding:14px 16px 3px}
+.rank_list li{position:relative}
+.rank_list li{margin-bottom:11px;font-size:0}
+.rank_list a{display:block;height:15px}
+.rank_list a:hover{text-decoration:none}
+.rank_list a:after{display:table;clear:both;table-layout:fixed;content:""}
+.rank_num{
+	display:inline-block;width:16px;height:15px;line-height:12px;vertical-align:top;text-align:center;
+	color:#fff;font-weight:bold;font-family:tahoma,sans-serif;font-size:9px;letter-spacing:-1px
+}
+.rank1 .rank_num{border:1px solid #29367c;background:#3b4890}
+.rank2 .rank_num{border:1px solid #ff7e00;background:#ff9900}
+.rank3 .rank_num{border:1px solid #4f4dc6;background:#6f6dd9}
+
+.realtime_gall .rank_num{border:1px solid #327cff;background:#5793fd}
+.rank_txt{display:inline-block;width:194px;margin-left:5px;line-height:15px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-size:12px}
+.rank_box.popular_rank .rank_list .rank_txt{width:150px}
+.rank_txt:hover{text-decoration:underline}
+.rank_state{font-family:Tahoma;font-size:11px;color:#999;vertical-align:top;float:right;margin-right:14px;margin-top:1px}
+.ico_ranking{position:absolute;right:0;top:0;display:inline-block;width:9px;height:10px;margin-top:6px;vertical-align:top}
+.ico_ranking.up{background-position:0px 0}
+.ico_ranking.down{background-position:-19px 0}
+.ico_ranking.nogap{background-position:-38px 0}
+.ico_ranking.new{background-position:-55px 0; width:22px;}
+.ico_ranking.up2{background-position:-87px 0}
+.ico_ranking.down2{background-position:-104px 0}
+.ico_ranking.nogap2{background-position:-121px 0}
+
+.box_bottom{height:38px;padding-right:12px;background:#f3f3f3;line-height:38px;text-align:right;font-size:11px;color:#555;width:236px;;position:absolute;left:0px;bottom:0}
+.rank_box{height:360px}
+.rank_box .box_bottom{text-decoration:underline;cursor:pointer}

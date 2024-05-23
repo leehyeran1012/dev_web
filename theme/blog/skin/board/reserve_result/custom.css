@@ -1,0 +1,24 @@
+@charset "utf-8";
+
+.circle {width: 45px;height: 45px;border-radius: 50%; font-size: 1.2em; color:#747474; background: white;}
+.circle2 {width: 45px;height: 45px;border-radius: 50%; font-size: 1.2em; color:#747474; background: #e7e7e7; padding:0}
+.circle_f {width: 45px;height: 45px;border-radius: 50%; font-size: 1.2em; color:blue; background: white;}
+.circle_s {width: 45px;height: 45px;border-radius: 50%; font-size: 1.2em; color:red; background: white;}
+.circle_fs {width: 45px;height: 45px;border-radius: 50%; font-size: 1.2em; color:#b6b6b6; background: #fafafa;}
+.btn-hover{background: #ffff99;}
+.btn-blue{width: 45px;height: 45px;border-radius: 50%; font-size: 1.2em; color:white; background: #465fee;}
+.btn-yellow{width: 45px;height: 45px;border-radius: 50%; font-size: 1.2em; color:#339900; background: #ccff00;}
+.fs-5{font-size:18px !important; font-weight:400;}
+
+@media only screen and (max-width:680px){
+.circle {width: 30px;height: 30px;border-radius: 50%; font-size: 1em; color:#747474; background: white;}
+.circle2 {width: 30px;height: 30px;border-radius: 50%; font-size: 1em; color:#747474; background: #e7e7e7; padding:0}
+.circle_f {width: 30px;height: 30px;border-radius: 50%; font-size: 1em; color:blue; background: white;}
+.circle_s {width: 30px;height: 30px;border-radius: 50%; font-size: 1em; color:red; background: white;}
+.circle_fs {width: 30px;height: 30px;border-radius: 50%; font-size: 1em; color:#b6b6b6; background: #fafafa;}
+.btn-hover{background: #ffff99;}
+.btn-blue{width: 30px;height: 30px;border-radius: 50%; font-size: 1em; color:white; background: #465fee;}
+.btn-yellow{width: 30px;height: 30px;border-radius: 50%; font-size: 1em; color:#339900; background: #ccff00;}
+.fs-5{font-size:18px !important; font-weight:300;}
+		
+}

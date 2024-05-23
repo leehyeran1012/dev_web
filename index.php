@@ -17,6 +17,7 @@ if (G5_IS_MOBILE) {
 include_once(G5_PATH.'/head.php');
 ?>
 
+
 <h2 class="sound_only">최신글</h2>
 
 <div class="latest_top_wr">

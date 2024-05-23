@@ -211,11 +211,17 @@ if ($config['cf_cert_use'] && $cert_type && $md5_cert_no) {
         $sql_certify .= " , mb_sex = '' ";
     }
 }
+
+$sql_password = "";
+if ($mb_password){
+	$mb_password = password_hash($mb_password, PASSWORD_BCRYPT, array('cost' => 10));
+	$sql_password = " , mb_password = '{$mb_password}' ";
+}
+	
 //===============================================================
-if ($w == '') {
+if ($w == '') {																	  
     $sql = " insert into {$g5['member_table']}
                 set mb_id = '{$mb_id}',
-                     mb_password = '".get_encrypt_string($mb_password)."',
                      mb_name = '{$mb_name}',
                      mb_nick = '{$mb_nick}',
                      mb_nick_date = '".G5_TIME_YMD."',
@@ -250,6 +256,7 @@ if ($w == '') {
                      mb_8 = '{$mb_8}',
                      mb_9 = '{$mb_9}',
                      mb_10 = '{$mb_10}'
+					 {$sql_password}
                      {$sql_certify} ";
 
     // 이메일 인증을 사용하지 않는다면 이메일 인증시간을 바로 넣는다
@@ -328,9 +335,6 @@ if ($w == '') {
     if (trim($_POST['mb_id']) != $mb_id)
         alert("로그인된 정보와 수정하려는 정보가 틀리므로 수정할 수 없습니다.\\n만약 올바르지 않은 방법을 사용하신다면 바로 중지하여 주십시오.");
 
-    $sql_password = "";
-    if ($mb_password)
-        $sql_password = " , mb_password = '".get_encrypt_string($mb_password)."' ";
 
     $sql_nick_date = "";
     if ($mb_nick_default != $mb_nick)

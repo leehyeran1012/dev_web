@@ -91,7 +91,7 @@ if ($w == "") {
             $tmp_password = $_POST['mb_password'];
             $pass_check = ($member['mb_password'] === $tmp_password);
         } else {
-            $pass_check = check_password($_POST['mb_password'], $member['mb_password']);
+            $pass_check = password_verify($_POST['mb_password'], $member['mb_password']);
         }
 
         if (!$pass_check)

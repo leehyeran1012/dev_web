@@ -1,0 +1,52 @@
+예약관리 스킨입니다. 
+
+부트스트랩으로 작성되어 있습니다. 부트스트랩 테마에서 사용하세요.
+
+비회원 신청으로 구성되어있습니다. 회원들만 신청하려면 일부 수정해야 됩니다.
+
+문자보내기는 구성되어 있지 않습니다. 필요하면 추가해야 됩니다.
+
+
+기본적으로 아래 css, js 파일들이 팔요합니다. 없으면 추가하세요.
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<script  src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+1. 테이블 2개가 필요합니다. 하나는 설정관련이고, 다른 하나는 신청자료 테이블입니다.
+
+	설정테이블명이 aaaa 면 신청자료 테이블은 aaaa_result 로 만들어야 됩니다.(뒤에 반드시 _result 를 붙여야 됨)
+
+ 2. 테이블에 스킨을 지정합니다. 설정테이블은 
+ 
+	aaaa 테이블은 reserve 로,  aaaa_result 테이블은 reserve_result 로 지정
+
+3. aaaa 게시판을 열고 예약일정등록 > 예약설정등록 > 접수항목 설정을 합니다.
+
+	달력이 만들어 지면 신정제외 항목을 선택하여 저장하면 됩니다.
+
+	
+	***접수항목 설정
+	
+	신청항목( 신청받을 항목을 | 로 연결해서 입력 ) : 항목1|항목2|항목3
+
+	접수기간 :  2023-12-01 ~ 2023-12-01
+
+	접수시작~종료시간 : 00:00|23:59
+
+	항목당 정원 :  1
+
+	오늘부터 ~일 후 것 부터 예약 가능(기본값: 1, 0은 당일신청가능) : 1
+
+	추가접수 항목 : 예악자성명 ^s| 연락처 ^h| 성별 ^r 남 ^r 여| 예약인원 ^s| 주소 ^a
+	
+
+	추가접수항목 설명 참조하세요.
+
+	  - 예약자성명, 신청일자, 신청항목, 연락처, 성별, 요청사항, 비밀번호는 기본으로 보입니다.
+	  - 추가해서 받은 사항만 추가접수 항목에 입력해주면 됩니다. 필요없으면 공란으로 두세요.

@@ -54,7 +54,9 @@ if( ! $mb_nick || ! $mb_name ){
 
 if( ! isset($mb_password) || ! $mb_password ){
 
-    $mb_password = md5(pack('V*', rand(), rand(), rand(), rand()));
+    //$mb_password = md5(pack('V*', rand(), rand(), rand(), rand()));
+	$mb_password = password_hash($mb_password, PASSWORD_BCRYPT, array('cost' => 10));
+	$sql_password = " , mb_password = '{$mb_password}' ";
 
 }
 
@@ -80,7 +82,7 @@ if( $mb = get_member($mb_id) ){
 
 $data = array(
 'mb_id' =>  $mb_id,
-'mb_password'   =>  get_encrypt_string($mb_password),
+'mb_password'   =>  $mb_password,
 'mb_nick'   =>  $mb_nick,
 'mb_email'  =>  $mb_email,
 'mb_name'   =>  $mb_name,
@@ -151,8 +153,7 @@ if($config['cf_cert_use']) {
 }
 // 회원정보 입력
 $sql = " insert into {$g5['member_table']}
-            set mb_id = '{$mb_id}',
-                mb_password = '".get_encrypt_string($mb_password)."',
+            set mb_id = '{$mb_id}',                
                 mb_name = '{$mb_name}',
                 mb_nick = '{$mb_nick}',
                 mb_nick_date = '".G5_TIME_YMD."',
@@ -167,7 +168,9 @@ $sql = " insert into {$g5['member_table']}
                 mb_sms = '0',
                 mb_open = '{$mb_open}',
                 mb_open_date = '".G5_TIME_YMD."'
-                {$sql_certify} ";
+                {$sql_certify} 
+				{$sql_password}
+				";
 $result = sql_query($sql, false);
 
 if($result) {
@@ -297,6 +300,6 @@ if($result) {
 
 } else {
 
-    alert('회원 가입 오류!', G5_URL );
+    //alert('회원 가입 오류!', G5_URL );
 
 }

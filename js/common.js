@@ -364,7 +364,7 @@ var win_zip = function(frm_name, frm_zip, frm_addr1, frm_addr2, frm_addr3, frm_j
     var vContent = "width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10";
     $("#meta_viewport").attr("content", vContent + ",user-scalable=no");
 
-    var zip_case = 1;   //0이면 레이어, 1이면 페이지에 끼워 넣기, 2이면 새창
+    var zip_case = 2;   //0이면 레이어, 1이면 페이지에 끼워 넣기, 2이면 새창
 
     var complete_fn = function(data){
         // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
